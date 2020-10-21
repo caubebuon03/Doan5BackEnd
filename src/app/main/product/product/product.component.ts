@@ -55,13 +55,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
       });
   }
 
-  pwdCheckValidator(control){
-    var filteredStrings = {search:control.value, select:'@#!$%&*'}
-    var result = (filteredStrings.select.match(new RegExp('[' + filteredStrings.search + ']', 'g')) || []).join('');
-    if(control.value.length < 6 || !result){
-        return {matkhau: true};
-    }
-  }
+  
 
   get f() { return this.formdata.controls; }
 
@@ -103,7 +97,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
           product_VGA:value.product_VGA,
           product_price:value.product_price,
           product_desc:value.product_desc,
-           user_id:this.product.product_id,          
+          product_id:this.product.product_id,          
           };
         this._api.post('/api/product/update-product',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Cập nhật thành công');
@@ -146,14 +140,16 @@ export class ProductComponent extends BaseComponent implements OnInit {
     setTimeout(() => {
       $('#createUserModal').modal('toggle');
       this.formdata = this.fb.group({
-      'product_name': ['', Validators.required],
-      'product_Ram': ['', Validators.required],
-      'product_CPU': ['',Validators.required],
-      'product_VGA': ['', Validators.required],
+      'product_name': ['',Validators.required],
+      'product_Ram': [''],
+      'product_CPU': [''],
+      'product_VGA': [''],
       'category_id': ['',Validators.required,],
       'brand_id': ['', Validators.required],
-      'product_price': ['', [Validators.required]],
+      'product_price': ['', Validators.required],
       'product_desc': ['', Validators.required],
+      'product_image': ['', Validators.required],
+
       }, {
         
       });
