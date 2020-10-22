@@ -76,9 +76,9 @@ export class ProductComponent extends BaseComponent implements OnInit {
            product_Ram:value.product_Ram,
            product_VGA:value.product_VGA,
            product_desc:value.product_desc,
-           product_price:value.product_price,           
+           product_price: +value.product_price,           
           };
-        this._api.post('/api/product/create-item',tmp).takeUntil(this.unsubscribe).subscribe(res => {
+        this._api.post('/api/product/create-product',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Thêm thành công');
           this.search();
           this.closeModal();
@@ -95,7 +95,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
           product_CPU:value.product_CPU,
           product_Ram:value.product_Ram,
           product_VGA:value.product_VGA,
-          product_price:value.product_price,
+          product_price: +value.product_price,
           product_desc:value.product_desc,
           product_id:this.product.product_id,          
           };
@@ -141,14 +141,13 @@ export class ProductComponent extends BaseComponent implements OnInit {
       $('#createUserModal').modal('toggle');
       this.formdata = this.fb.group({
       'product_name': ['',Validators.required],
-      'product_Ram': [''],
-      'product_CPU': [''],
-      'product_VGA': [''],
-      'category_id': ['',Validators.required,],
+      'product_Ram': ['',Validators.required],
+      'product_CPU': ['',Validators.required],
+      'product_VGA': ['',Validators.required],
+      'category_id': ['',Validators.required],
       'brand_id': ['', Validators.required],
       'product_price': ['', Validators.required],
       'product_desc': ['', Validators.required],
-      'product_image': ['', Validators.required],
 
       }, {
         

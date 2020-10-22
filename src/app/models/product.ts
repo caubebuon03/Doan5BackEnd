@@ -6,5 +6,4 @@ export class Product {
     product_CPU: string;
     product_VGA: string;
     product_price: number;
-    product_image: string;
 }
