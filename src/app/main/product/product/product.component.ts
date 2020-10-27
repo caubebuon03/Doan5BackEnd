@@ -4,6 +4,7 @@ import { FileUpload } from 'primeng/fileupload';
 import { FormBuilder, Validators} from '@angular/forms';
 import { BaseComponent } from '../../../lib/base-component';
 import 'rxjs/add/operator/takeUntil';
+import { Observable } from 'rxjs-compat';
 declare var $: any;
 @Component({
   selector: 'app-product',
@@ -13,6 +14,10 @@ declare var $: any;
 export class ProductComponent extends BaseComponent implements OnInit {
   public products: any;
   public product: any;
+  menus: any;
+  brands: any;
+  category : any;
+  category_id: any;
   public totalRecords:any;
   public pageSize = 3;
   public page = 1;
@@ -31,8 +36,18 @@ export class ProductComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.formsearch = this.fb.group({
       'product_name': [''],
+      'category_id': [''],
       'product_price': [''],     
     });
+    this._api.get('/api/category/get-category').takeUntil(this.unsubscribe).subscribe(res => {
+      this.menus = res;
+    }); 
+    
+    
+    this._api.get('/api/brand/get-brand').takeUntil(this.unsubscribe).subscribe(res => {
+      this.brands = res;
+      
+    }); 
    
    this.search();
   }
@@ -53,7 +68,9 @@ export class ProductComponent extends BaseComponent implements OnInit {
       this.totalRecords =  res.totalItems;
       this.pageSize = res.pageSize;
       });
+      
   }
+  
 
   
 
@@ -167,14 +184,16 @@ export class ProductComponent extends BaseComponent implements OnInit {
         this.product = res; 
         
           this.formdata = this.fb.group({
-            'product_name': ['', Validators.required],
-            'product_Ram': ['', Validators.required],
-            'product_CPU': ['',Validators.required],
-            'product_VGA': ['', Validators.required],
-            'category_id': ['',Validators.required,],
-            'brand_id': ['', Validators.required],
-            'product_price': ['', [Validators.required]],
-            'product_desc': ['', Validators.required],
+            'product_name': [this.product.product_name, Validators.required],
+            'product_Ram': [this.product.product_Ram, Validators.required],
+            'product_CPU': [this.product.product_CPU,Validators.required],
+            'product_VGA': [this.product.product_VGA, Validators.required],
+            'category_id': [this.product.category_id,Validators.required,],
+            'brand_id': [this.product.brand_id, Validators.required],
+            'product_price': [this.product.product_price, [Validators.required]],
+            'product_desc': [this.product.product_desc, Validators.required],
+            'product_image': [this.product.product_image, Validators.required],
+            
           }, {
             
           }); 

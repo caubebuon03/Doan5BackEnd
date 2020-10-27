@@ -1,5 +1,5 @@
 export class Product {
-    product_: number;
+    product_id: number;
     category_id: string;
     brand_id: string;
     product_Ram : string;

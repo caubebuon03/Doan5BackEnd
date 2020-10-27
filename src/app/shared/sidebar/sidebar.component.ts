@@ -14,7 +14,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   {name:'Hàng hóa',url:'',icon:'signal',
   childs:
   [{name:'Quản lý đơn hàng',url:'/product/order'},
-  {name:'Quản lý loại hàng',url:'/product/type'},
+  {name:'Quản lý thương hiệu',url:'/product/brand'},
+  {name:'Quản lý danh mục',url:'/product/category'},
   {name:'Quản lý sản phẩm',url:'/product/product'}]}];
   constructor() { } 
   ngOnInit(): void {

@@ -7,19 +7,24 @@ import { TypeComponent } from './type/type.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
+import { BrandComponent } from './brand/brand.component';
 
 const routes: Routes = [
   {
     path: 'product',
     component: ProductComponent
   },
-  { path: 'category', component: TypeComponent },
-  { path: 'order', component: OrderComponent}
+  {
+    path: 'category',
+    component: TypeComponent
+  },
+  { path: 'order', component: OrderComponent},
+  { path: 'brand', component: BrandComponent }
 ];
 
 @NgModule({
   declarations: [ 
-    OrderComponent,ProductComponent,TypeComponent
+    OrderComponent,ProductComponent,TypeComponent, BrandComponent
   ],
   imports: [
     CommonModule,
