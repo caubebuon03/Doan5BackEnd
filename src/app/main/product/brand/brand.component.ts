@@ -69,7 +69,7 @@ export class BrandComponent extends BaseComponent implements OnInit {
       this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
         let data_image = data == '' ? null : data;
         let tmp = {
-            parent_brand_id:this.parent,
+          parent_brand_id:this.parent,
            brand_name:value.brand_name,
            brand_desc:value.brand_desc,
            url:value.url,       
@@ -84,6 +84,7 @@ export class BrandComponent extends BaseComponent implements OnInit {
       this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
         let data_image = data == '' ? null : data;
         let tmp = {
+          
           brand_name:value.brand_name,
            brand_desc:value.brand_desc,
            url:value.url,

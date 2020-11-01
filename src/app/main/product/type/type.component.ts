@@ -84,6 +84,7 @@ export class TypeComponent extends BaseComponent implements OnInit {
       this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
         let data_image = data == '' ? null : data;
         let tmp = {
+          
           category_name:value.category_name,
            category_desc:value.category_desc,
            url:value.url,

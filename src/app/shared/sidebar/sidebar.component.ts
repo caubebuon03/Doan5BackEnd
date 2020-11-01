@@ -9,8 +9,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   public menus = [
   {name :'Người dùng', url:'',icon:'user',
   childs:[{name:'Quản lý người dùng',url:'user/user'},
-  {name:'Đăng xuất', url:''},
-  {name:'Đăng nhập', url:'/login'}]},
+  {name:'Quản lý khách hàng', url:'user/customer'},
+  ]},
   {name:'Hàng hóa',url:'',icon:'signal',
   childs:
   [{name:'Quản lý đơn hàng',url:'/product/order'},
