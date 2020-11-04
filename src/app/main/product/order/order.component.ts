@@ -74,10 +74,48 @@ export class OrderComponent extends BaseComponent implements OnInit {
     }); 
   }
 
+  createModal() {
+    this.doneSetupForm = false;
+    this.showUpdateModal = true;
+    this.isCreate = true;
+    this.order = null;
+    setTimeout(() => {
+      $('#createsanphamModal').modal('toggle');
+      this.formdata = this.fb.group({
+      'ma_hoa_don': ['', Validators.required],
+      'ho_ten': ['', Validators.required],
+      'dia_chi': ['', Validators.required],
+      'so_dien_thoai': ['', [Validators.required]],
+      'total': ['', Validators.required],
+      });
+      this.doneSetupForm = true;
+    });
+  }
+
+  public openUpdateModal(row) {
+    this.doneSetupForm = false;
+    this.showUpdateModal = true; 
+    this.isCreate = false;
+    setTimeout(() => {
+      $('#createsanphamModal').modal('toggle');
+      this._api.get('/api/hoadon/get-chi-tiet-by-hoa-don/'+ row.ma_hoa_don).takeUntil(this.unsubscribe).subscribe((res:any) => {
+        this.order = res; 
+          this.formdata = this.fb.group({
+            'ma_hoa_don': [this.order.ma_hoa_don, Validators.required],
+            'ho_ten': [this.order.ho_ten, Validators.required],
+            'dia_chi': [this.order.dia_chi, Validators.required],
+            'so_dien_thoai': [this.order.so_dien_thoai, Validators.required],
+            'total': [this.order.total, Validators.required],
+          }); 
+          this.doneSetupForm = true;
+        }); 
+    }, 700);
+  }
+
   
   
 
   closeModal() {
-    $('#createUserModal').closest('.modal').modal('hide');
+    $('#createsanphamModal').closest('.modal').modal('hide');
   }
 }
